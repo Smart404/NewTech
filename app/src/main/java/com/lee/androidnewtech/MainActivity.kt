@@ -11,7 +11,14 @@ class MainActivity : AppCompatActivity() {
         val mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
         mainBinding.text1.setOnClickListener {
-            startActivity(Intent(this, MotionActivity::class.java))
+            val intent = Intent(this, MotionActivity::class.java)
+            intent.putExtra(MotionActivity.ACTIVITY_TYPE, 1)
+            startActivity(intent)
+        }
+        mainBinding.text2.setOnClickListener {
+            val intent = Intent(this, MotionActivity::class.java)
+            intent.putExtra(MotionActivity.ACTIVITY_TYPE, 2)
+            startActivity(intent)
         }
     }
 }
