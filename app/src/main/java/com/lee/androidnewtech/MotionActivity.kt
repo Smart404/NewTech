@@ -14,6 +14,7 @@ class MotionActivity : AppCompatActivity() {
         when (intent.getIntExtra(ACTIVITY_TYPE, -1)) {
             1 -> setContentView(R.layout.activity_motion)
             2 -> setContentView(R.layout.activity_motion2)
+            3 -> setContentView(R.layout.activity_motion3)
             else -> setContentView(R.layout.activity_motion)
         }
 
