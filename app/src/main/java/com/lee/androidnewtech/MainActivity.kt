@@ -25,5 +25,10 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(MotionActivity.ACTIVITY_TYPE, 3)
             startActivity(intent)
         }
+        mainBinding.text4.setOnClickListener {
+            val intent = Intent(this, MotionActivity::class.java)
+            intent.putExtra(MotionActivity.ACTIVITY_TYPE, 4)
+            startActivity(intent)
+        }
     }
 }

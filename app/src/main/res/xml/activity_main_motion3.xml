@@ -49,7 +49,7 @@
     <Transition
         app:constraintSetStart="@id/start"
         app:constraintSetEnd="@id/end"
-        app:duration="4000">
+        app:duration="2000">
         <KeyFrameSet>
             <KeyPosition
                 app:framePosition="60"
