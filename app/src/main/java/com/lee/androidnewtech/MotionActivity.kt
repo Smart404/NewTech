@@ -2,10 +2,12 @@ package com.lee.androidnewtech
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.lee.androidnewtech.databinding.ActivityViewpager2Binding
-import com.lee.androidnewtech.databinding.ViewpagerItemBinding
-import com.lee.androidnewtech.viewpager.ViewPagerAdapter
+import com.lee.androidnewtech.fragment.MotionLayoutFragment
+import com.lee.androidnewtech.viewpager.LivePageAdapter
+import com.lee.androidnewtech.viewpager.MyOnPageChangeCallback
 
 class MotionActivity : AppCompatActivity() {
     companion object {
@@ -22,8 +24,13 @@ class MotionActivity : AppCompatActivity() {
             4 -> {
                 val itemBinding = ActivityViewpager2Binding.inflate(layoutInflater)
                 setContentView(itemBinding.root)
-                itemBinding.viewpager.adapter = ViewPagerAdapter()
+                val fragmentList: ArrayList<Fragment> = ArrayList()
+                for (i in 0..4) {
+                    fragmentList.add(MotionLayoutFragment.newInstance("$i"))
+                }
+                itemBinding.viewpager.adapter = LivePageAdapter(this, fragmentList)
                 itemBinding.viewpager.orientation = ViewPager2.ORIENTATION_VERTICAL
+                itemBinding.viewpager.registerOnPageChangeCallback(MyOnPageChangeCallback(itemBinding.viewpager,fragmentList.size))
             }
             else -> setContentView(R.layout.activity_motion)
         }
