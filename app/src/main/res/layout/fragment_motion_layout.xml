@@ -14,6 +14,12 @@
         android:layout_height="match_parent"
         android:src="@mipmap/sp_default" />
 
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="关闭"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_menu"
         android:layout_width="match_parent"
@@ -51,14 +57,18 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
+    <com.lee.androidnewtech.NestedScrollableHost
+        android:id="@+id/navigation_header_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </com.lee.androidnewtech.NestedScrollableHost>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

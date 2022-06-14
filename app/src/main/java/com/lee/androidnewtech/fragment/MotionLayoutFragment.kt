@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.SimpleAdapter
 import android.widget.TextView
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.motion.widget.MotionLayout.TransitionListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING
@@ -30,7 +32,38 @@ class MotionLayoutFragment : Fragment() {
         }//获取数据
         val view = inflater.inflate(R.layout.fragment_motion_layout, container, false)
         view.findViewById<TextView>(R.id.tipText).text = param1
-        val motionLayout = view.findViewById<MotionLayout>(R.id.content)
+        val motionLayout = view.findViewById<MotionLayout>(R.id.content).apply {
+            setTransitionListener(object : TransitionListener {
+                override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+                    Log.d(TAG, "onTransitionStarted: $p1 -- $p2")
+                }
+
+                override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
+//                    Log.d(TAG, "onTransitionChange: ")
+                }
+
+                override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
+                    Log.d(TAG, "onTransitionCompleted: $p1")
+                }
+
+                override fun onTransitionTrigger(
+                    p0: MotionLayout?,
+                    p1: Int,
+                    p2: Boolean,
+                    p3: Float
+                ) {
+                    Log.d(TAG, "onTransitionTrigger: ")
+                }
+            })
+
+        }
+        view.findViewById<Button>(R.id.btn_close).apply {
+            setOnClickListener {
+                motionLayout.transitionToStart()
+            }
+        }
+
+//
         view.findViewById<RecyclerView>(R.id.list).apply {
             layoutManager = LinearLayoutManager(context)
             adapter = ViewPagerAdapter()
@@ -44,9 +77,9 @@ class MotionLayoutFragment : Fragment() {
                     super.onScrollStateChanged(recyclerView, newState)
                     val canScrollTopEdgeTreatment = recyclerView.canScrollVertically(-1)
                     Log.d(TAG, "onScrollStateChanged: $newState -- $canScrollTopEdgeTreatment")
-                    if (newState == SCROLL_STATE_DRAGGING && !canScrollTopEdgeTreatment) {
-                        motionLayout.transitionToStart()
-                    }
+//                    if (newState == SCROLL_STATE_DRAGGING && !canScrollTopEdgeTreatment) {
+//                        motionLayout.transitionToStart()
+//                    }
                 }
             })
         }
