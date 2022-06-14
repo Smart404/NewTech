@@ -19,16 +19,17 @@ class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.MyViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.viewpager_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.viewpager_item, parent, false)
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.mTvTitle?.text = "item$position"
-        holder.itemView.setBackgroundResource(colorList[position]);
+        holder.itemView.setBackgroundResource(colorList[position % 4])
     }
 
-    override fun getItemCount(): Int = colorList.size
+    override fun getItemCount(): Int = 10
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var mTvTitle: TextView? = itemView.findViewById(R.id.tvTitle)

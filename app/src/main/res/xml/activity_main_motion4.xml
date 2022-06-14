@@ -42,16 +42,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent">
-            <CustomAttribute
-                app:attributeName="backgroundColor"
-                app:customColorValue="#ff0000"/>
+<!--            <CustomAttribute-->
+<!--                app:attributeName="backgroundColor"-->
+<!--                app:customColorValue="#ff0000"/>-->
         </Constraint>
     </ConstraintSet>
 
     <Transition
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@id/start"
-        app:duration="1000">
+        app:duration="500">
         <OnClick
             app:clickAction="toggle"
             app:targetId="@+id/btn_video" />
@@ -60,11 +60,10 @@
     <Transition
         app:constraintSetEnd="@id/end"
         app:constraintSetStart="@id/start"
-        app:duration="1000">
+        app:duration="500">
         <OnClick
             app:clickAction="toggle"
             app:targetId="@+id/btn_comment" />
     </Transition>
-
 
 </MotionScene>
